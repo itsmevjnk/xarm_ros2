@@ -293,8 +293,8 @@ bool JoyToServoPub::_convert_ps4_joy_to_cmd(
 
     // The bread and butter: map buttons to twist commands
     twist->twist.linear.x = axes[left_stick_fb];
-    twist->twist.linear.y = axes[left_stick_lr];
-    twist->twist.linear.z = -1 * (axes[left_trigger] - axes[right_trigger]);
+    twist->twist.linear.y = -axes[left_stick_lr];
+    twist->twist.linear.z = -0.25 * (axes[left_trigger] - axes[right_trigger]);
     twist->twist.angular.y = axes[right_stick_fb];
     twist->twist.angular.x = axes[right_stick_lr];
     twist->twist.angular.z = buttons[PS4_BTN_LB] - buttons[PS4_BTN_RB];

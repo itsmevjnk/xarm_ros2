@@ -22,6 +22,7 @@ def launch_setup(context, *args, **kwargs):
     hw_ns = LaunchConfiguration('hw_ns', default='')
     marker_size = LaunchConfiguration('marker_size', default=0.15)
     marker_id = LaunchConfiguration('marker_id', default=398)
+    calib_type = LaunchConfiguration('calib_type', default='eye_in_hand')
 
     robot_type = robot_type.perform(context)
     dof = dof.perform(context)
@@ -81,7 +82,7 @@ def launch_setup(context, *args, **kwargs):
         PythonLaunchDescriptionSource(PathJoinSubstitution([FindPackageShare('easy_handeye2'), 'launch', 'calibrate.launch.py'])),
         launch_arguments={
             'name': calib_filename,
-            'calibration_type': 'eye_in_hand',
+            'calibration_type': calib_type,
             'tracking_base_frame': 'camera_color_optical_frame',
             'tracking_marker_frame': 'camera_marker',
             'robot_base_frame': 'link_base',
